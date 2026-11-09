@@ -27,12 +27,12 @@ def maxValue(n,turn):
 
     val=-math.inf
     for act in actions(n):
-        newState=result(n,act)
+        newN=result(n,act)
         if turn=='X':
             nextTurn='O'
         else:
             nextTurn='X'
-        evalValue=minValue(newState,nextTurn)
+        evalValue=minValue(newN,nextTurn)
         if evalValue>val:
             val=evalValue
     return val
@@ -43,12 +43,12 @@ def minValue(n,turn):
 
     val=math.inf
     for act in actions(n):
-        newState=result(n,act)
+        newN=result(n,act)
         if turn=='X':
             nextTurn='O'
         else:
             nextTurn='X'
-        evalValue=maxValue(newState,nextTurn)
+        evalValue=maxValue(newN,nextTurn)
         if evalValue<val:
             val=evalValue
     return val
@@ -59,8 +59,8 @@ def minimax(n,turn):
     if turn=='X':
         bestValue=-math.inf
         for act in actions(n):
-            newState=result(n,act)
-            value=minValue(newState,'O')
+            newN=result(n,act)
+            value=minValue(newN,'O')
 
             if value>bestValue:
                 bestValue=value
@@ -68,8 +68,8 @@ def minimax(n,turn):
     else:
         bestValue=math.inf
         for act in actions(n):
-            newState=result(n,act)
-            value=maxValue(newState,'X')
+            newN=result(n,act)
+            value=maxValue(newN,'X')
 
             if value<bestValue:
                 bestValue=value
@@ -78,8 +78,8 @@ def minimax(n,turn):
 
 def play():
 
-    stones = 7
-    turn = 'O'
+    stones = 13
+    turn = 'X'
 
     print("Welcome to Nim Game!")
     print("You are O, AI is X.")
